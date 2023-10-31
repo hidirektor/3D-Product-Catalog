@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ÖnderGrup - Ürün Kataloğu">
+    <meta name="author" content="hidirektor">
+    <title>ÖnderGrup - Ürün Kataloğu</title>
+
+    <link rel="shortcut icon" href="https://www.ondergrup.com/wp-content/uploads/2023/01/favicon.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <link href="assets/css/home.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/styleraw.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css"/>
+  </head>
+
+  <body>
+
+  <header class="header black_nav clearfix element_to_stick">
+    <div class="container">
+      <div id="logo">
+        <a href="index.html">
+          <img src="assets/img/ondergrup.png" width="162" height="50" alt="">
+        </a>
+      </div>
+      <div class="layer"></div><!-- Opacity Mask Menu Mobile -->
+      <!-- /top_menu -->
+      <nav class="main-menu">
+        <div id="header_menu">
+          <a href="index.html"><img src="assets/img/ondergrup.png" width="162" height="50" alt=""></a>
+        </div>
+        <ul>
+          <li><a href="index.html" class="btn_1 medium gradient pulse_bt mt-2">PLATFORM</a></li>
+          <li><a href="index.html" class="btn_1 medium gradient pulse_bt mt-2">HOMELIFT</a></li>
+          <li><a href="index.html" class="btn_1 medium gradient pulse_bt mt-2">TUBELIFT</a></li>
+          <li><a href="index.html" class="btn_1 medium gradient pulse_bt mt-2" style="margin-left: 30px">ÇIKTI EKRANI</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="content">
+    <div class="row">
+      <div id="viewer">
+      </div>
+
+      <div class="align-self-center" style="width: 30%">
+        <div class="box_how" style="height: 600px">
+          <div class="center">
+            <span id="name" style="color: black">Yüklenme: </span>
+            <span id="loading" style="color: black"></span>
+          </div>
+
+          <div class="center">
+            <button class="button" id="sample-1-button">
+              Örnekk 1
+            </button>
+            <button class="button" id="sample-2-button">
+              Örnek 2
+            </button>
+            <button class="button" id="sample-3-button">
+              Örnek 3
+            </button>
+            <button class="button" id="sample-4-button">
+              Örnek 4 (.glb)
+            </button>
+          </div>
+
+          <div class="center" style="color: white">
+            <input class="mr2" id="grid-button" type="checkbox" checked>Zemin Çizgileri</input>
+            <button class="button" id="fullscreen-button">Tam Ekran</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer>
+
+      <div class="container fix_mobile" style="padding-bottom: 20px">
+        <hr>
+        <div class="row" style="text-align: center">
+          <ul style="list-style-type: none">
+            <li><a href="https://github.com/hidirektor" target="_blank">Coded by hidirektor with ♥</a></li>
+            <li><a href="https://ondergrup.com" target="_blank">© ÖnderGrup</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./dist/js-3d-model-viewer.js"></script>
+  <script>
+  var modelPlayer = this.Js3dModelViewer
+  var nameElement = document.getElementById('name')
+  var loadingElement = document.getElementById('loading')
+  var viewerElement = document.getElementById('viewer')
+  viewerElement.style.height = "600px"
+  viewerElement.style.width = "70%";
+  var scene = modelPlayer.prepareScene(viewerElement, {
+    grid: true,
+    background: 'rgb(80, 80, 80)'
+  })
+
+  viewerElement.addEventListener('loading', function (event) {
+    if (event.detail.loaded === 0) {
+      nameElement.innerHTML = 'Loading...'
+    }
+    var progress = Math.floor(100 * event.detail.loaded / event.detail.total)
+    loadingElement.innerHTML = '%' + progress
+  })
+
+  modelPlayer.loadObject(scene, './assets/sample.obj', null, function () {
+    nameElement.innerHTML = 'Yüklenme: '
+    loadingElement.innerHTML = ''
+  })
+
+  var fullScreenButton = document.getElementById('fullscreen-button')
+  fullScreenButton.addEventListener('click', function () {
+    modelPlayer.goFullScreen(viewerElement)
+  })
+
+  var sample1Button = document.getElementById('sample-1-button')
+  sample1Button.addEventListener('click', function () {
+    modelPlayer.clearScene(scene)
+    modelPlayer.resetCamera(scene)
+    modelPlayer.showGrid(scene)
+    nameElement.innerHTML = 'Yüklenme: '
+    modelPlayer.loadObject(scene, './assets/sample.obj', null, function () {
+      loadingElement.innerHTML = ''
+    })
+  })
+
+  var sample2Button = document.getElementById('sample-2-button')
+  sample2Button.addEventListener('click', function () {
+    modelPlayer.clearScene(scene)
+    modelPlayer.resetCamera(scene)
+    modelPlayer.showGrid(scene)
+    nameElement.innerHTML = 'Yüklenme: '
+    modelPlayer.loadObject(
+      scene,
+      './assets/sample_02.obj',
+      './assets/sample_02.mtl',
+      function () {
+        loadingElement.innerHTML = ''
+    })
+  })
+
+  var sample3Button = document.getElementById('sample-3-button')
+  sample3Button.addEventListener('click', function () {
+    modelPlayer.clearScene(scene)
+    modelPlayer.resetCamera(scene)
+    modelPlayer.showGrid(scene)
+    nameElement.innerHTML = 'Yüklenme: '
+    modelPlayer.loadObject(
+      scene,
+      './assets/sample_03.obj',
+      './assets/sample_03.mtl',
+      function () {
+        nameElement.innerHTML = 'Yüklenme: '
+        loadingElement.innerHTML = ''
+    })
+  })
+
+  var sample4Button = document.getElementById('sample-4-button')
+  sample4Button.addEventListener('click', function () {
+    modelPlayer.clearScene(scene)
+    modelPlayer.resetCamera(scene)
+    modelPlayer.showGrid(scene)
+    nameElement.innerHTML = 'Yüklenme: '
+    modelPlayer.loadGlb(
+      scene,
+      './assets/avocado.glb',
+      function () {
+        nameElement.innerHTML = 'Yüklenme: '
+        loadingElement.innerHTML = ''
+    })
+  })
+
+  var gridCheckbox = document.querySelector('#grid-button');
+  gridCheckbox.onchange = function() {
+  if(gridCheckbox.checked) {
+    modelPlayer.showGrid(scene)
+  } else {
+    modelPlayer.hideGrid(scene)
+  }
+};
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/components/prism-javascript.js"></script>
+  <script>window.onload = function() {
+    var content = document.getElementById('content');
+
+    content.style.height = '2000px';
+
+    content.addEventListener('wheel', function(event) {
+      var deltaY = event.deltaY;
+
+      content.scrollTop += deltaY;
+    });
+  };
+  </script>
+</body>
+</html>

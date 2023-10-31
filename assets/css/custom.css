@@ -1,0 +1,66 @@
+/*============================================================================================*/
+/* Custom styles below */
+/*============================================================================================*/
+.image-links {
+    text-align: center;
+    justify-content: center;
+}
+
+.image-links a {
+    display: inline-block;
+    margin: 10px;
+}
+
+.image-links a img {
+    max-width: 100%;
+    height: auto;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+aside .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkboxes {
+    text-align: center;
+}
+
+.container_check {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+#accordion_group .collapse {
+    display: none;
+}
+
+#accordion_group .collapse.show {
+    display: block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1; /* Dropdown menünün diğer elementlerin üstünde görünmesini sağlar */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
